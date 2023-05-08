@@ -1,13 +1,18 @@
-name: Maven CI/CD
+ 
+name: Build and Push Docker Image
 
 on:
- push:
-    branches: [ main ]
-  
-    
+  push:
+    branches:
+      - main
+
+env:
+  DOCKER_USERNAME: "jithesh1906"
+  DOCKER_PASSWORD: "Jithesh88."
 
 jobs:
-  build_and_test1:
+  build-and-push:
+    
 
     runs-on: ubuntu-latest
 
@@ -20,3 +25,16 @@ jobs:
 
     - name: Build project with Maven
       run: mvn clean install
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: "jithesh1906"
+        password: "Jithesh88."
+
+    - name: Push Docker image to Docker Hub
+      run: docker push your-dockerhub-username/your-docker-image-name:latest
+
