@@ -36,5 +36,5 @@ jobs:
         password: "Jithesh88."
 
     - name: Push Docker image to Docker Hub
-      run: docker push jithesh1906/jithu
+      run: docker push jithesh1906/jithu:latest
 
